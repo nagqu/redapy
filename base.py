@@ -27,7 +27,7 @@ class URLs():
         self.forum_category = "ajax.php?action=forum&type=main"
         self.forum_view = "ajax.php?action=forum&type=main"
         self.thread_view = "ajax.php?action=forum&type=viewthread&threadid="
-        self.artist = "ajax.php?action=artist&id="
+        self.artist = "ajax.php?action=artist&"
         self.torrent_search = "ajax.php?action=browse&"
 
     def get_base_url(self):
