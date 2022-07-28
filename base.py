@@ -1,12 +1,10 @@
-from dataclasses import dataclass
 import requests
-from dotenv import dotenv_values, load_dotenv
+from dotenv import load_dotenv
 import os
 
 
 class BaseAuth():
     def __init__(self):
-        # self.api_key = dotenv_values()
         load_dotenv()
         self.session = requests.Session()
         self.session.headers.update({"Authorization": os.getenv('APIKEY')})
@@ -70,7 +68,7 @@ class URLs():
         return self.base_url + self.thread_view
 
     def get_artist(self):
-        return self.base_url + self.artsit
+        return self.base_url + self.artist
 
 
 # u = URLs()
