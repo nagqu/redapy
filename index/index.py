@@ -5,7 +5,7 @@ import requests
 class Index():
     def __init__(self):
         urls = URLs()
-        self.url = urls.get_index()
+        self.url: str = urls.get_index()
 
     def get_index(self):
         s = BaseAuth()

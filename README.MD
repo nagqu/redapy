@@ -6,3 +6,6 @@ very much in progress
 - poetry
 - requests
 - python-dotenv
+
+## progress tracker
+https://brr.tf/redapytracker

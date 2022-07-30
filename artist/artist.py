@@ -1,4 +1,5 @@
-from base import BaseAuth, URLs
+from typing import List
+from base import BaseAuth, URLs, Request, mappings
 import json
 
 
@@ -11,10 +12,6 @@ class Artist():
     def artist_by_id(self, id: int):
         r = self.sess.session.get(self.url + f'id={id}')
         resp_json = r.json()
-        artist_name: str = resp_json["response"]["name"]
-        vanity_house: bool = resp_json["response"]["vanityHouse"]
-        tags: dict = resp_json["response"]["tags"]
-
         return resp_json
 
     # to implement further
@@ -23,10 +20,10 @@ class Artist():
     #     r = self.sess.session.get(self.url + f'artistname={name}')
     #     return r.content
 
-    def get_artist_torrent_ids(self, id: int, format: str = "", encoding: str = ""):
+    def get_artist_torrent_ids(self, id: int, format: str = "", encoding: str = "") -> List[int]:
         artist_page: dict = self.artist_by_id(id)
-        torrentgroups = artist_page["response"]["torrentgroup"]
-        torrent_ids = []
+        torrentgroups: List[dict] = artist_page["response"]["torrentgroup"]
+        torrent_ids: List[int] = []
         # it somehow works but is inefficient af
         for i in torrentgroups:
             i = dict(i)
@@ -44,5 +41,11 @@ class Artist():
                     torrent_ids.append(j["id"])
         return torrent_ids
 
-    def get_requests(self, id: int):
-        pass
+    def get_request(self, id: int) -> List[Request]:
+        artist_page: dict = self.artist_by_id(id)
+        requests_list: List[dict] = artist_page["response"]["requests"]
+        requests: List[Request] = []
+        for request in requests_list:
+            requests.append(Request(
+                request["requestId"], request["title"], mappings[int(request["categoryId"])], request["bounty"]))
+        return requests
