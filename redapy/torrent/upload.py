@@ -1,8 +1,6 @@
 from dataclasses import asdict
 import os
-from redapy.base import BaseAuth, Torrent, urls
-from typing import List
-from base64 import b64encode
+from redapy.base import BaseAuth, TorrentUpload, urls
 
 
 # No Log support for now
@@ -12,7 +10,7 @@ class Upload():
         self.sess = BaseAuth()
         self.url: str = urls["base_url"] + urls["torrent_up"]
 
-    def upload_torrent(self, filepath: str, filename: str, torrent: Torrent):
+    def upload_torrent(self, filepath: str, filename: str, torrent: TorrentUpload):
         file = {
             "file_input": (filename, open(os.path.join(filepath, filename), 'rb'), 'application/x-bittorrent')
         }

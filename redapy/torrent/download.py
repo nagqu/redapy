@@ -1,17 +1,17 @@
-from redapy.base import BaseAuth, mappings, Torrent, urls
-from typing import List, Optional
+from redapy.base import BaseAuth, TorrentDownload, urls
+from typing import Optional
 
 
 class Download():
     def __init__(self) -> None:
         self.sess = BaseAuth()
 
-    def get_torrent_data(self, id: int) -> Torrent:
+    def get_torrent_data(self, id: int) -> TorrentDownload:
         self.url_details: str = urls["base_url"] + urls["torrent_details"]
         r = self.sess.session.get(self.url_details + f'id={id}')
         resp_json = r.json()
 
-        torrent = Torrent()
+        torrent = TorrentDownload()
         torrent.artists = [i["name"]
                            for i in resp_json["response"]["group"]["musicInfo"]["artists"]]
         torrent.name = resp_json["response"]["group"]["name"]

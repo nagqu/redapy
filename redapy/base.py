@@ -58,8 +58,18 @@ class Request():
     bounty: int  # in bytes
 
 
+@dataclass
+class TorrentDownload():
+    artists: List[str]
+    name: str
+    id: int
+    media: str
+    format: str
+    encoding: str
+
+
 @dataclass()
-class Torrent():
+class TorrentUpload():
     category: int
     artists: List[str]
     importance: List[int]
