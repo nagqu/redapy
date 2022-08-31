@@ -1,12 +1,11 @@
 from typing import List
-from base import BaseAuth, URLs, Request, mappings
-import json
+from base import BaseAuth, URLs, Request, mappings_release, urls
 
 
 class Artist():
     def __init__(self):
-        urls = URLs()
-        self.url: str = urls.get_artist()
+        # urls = URLs()
+        self.url: str = urls["base_url"] + urls["artist"]
         self.sess = BaseAuth()
 
     def artist_by_id(self, id: int):
@@ -47,5 +46,8 @@ class Artist():
         requests: List[Request] = []
         for request in requests_list:
             requests.append(Request(
-                request["requestId"], request["title"], mappings[int(request["categoryId"])], request["bounty"]))
+                request["requestId"], request["title"],
+                mappings_release[int(request["categoryId"])],
+                request["bounty"])
+            )
         return requests
