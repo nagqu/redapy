@@ -1,6 +1,5 @@
 from dataclasses import asdict
 import os
-from platform import release
 from typing import List, Union
 from redapy.base import BaseAuth, TorrentUpload, urls, mappings_categories, mappings_release, mappings_artist_importance
 
