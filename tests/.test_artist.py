@@ -1,7 +1,7 @@
 from typing import List
-import pytest
-from .base import *
-from .artist import Artist
+from redapy.base import *
+from redapy.artist import Artist
+from redapy.torrent.upload import Upload
 
 # Due to new torrents being uploaded tests work at the time of writing
 

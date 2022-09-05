@@ -39,7 +39,7 @@ mappings_artist: Dict[int, str] = {
     1024: "Guest Appearance"
 }
 
-mapings_artist_importance: Dict[int, str] = {
+mappings_artist_importance: Dict[int, str] = {
     1: "Main",
     2: "Guest",
     3: "Composer",
