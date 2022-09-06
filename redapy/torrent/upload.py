@@ -1,7 +1,7 @@
 from dataclasses import asdict
 import os
 from typing import List, Union
-from redapy.base import BaseAuth, TorrentUpload, urls, mappings_categories, mappings_release, mappings_artist_importance
+from redapy.base import BaseAuth, TorrentUpload, urls, mappings_categories, mappings_release, mappings_artist_importance, Failure
 
 
 # No Log support for now
@@ -48,8 +48,13 @@ class Upload():
         }
         arguments = asdict(torrent)
         r = self.sess.session.post(self.url, data=arguments, files=file)
-        return r.resp
+        resp = r.json()
+        if resp["status"] == "success":
+            return resp["response"]["torrentid"]
+        else:
+            return Failure("Failed to upload a torrent")
 
-    # TODO report for LMA/LWA
+    # TODO report for LMA/LWA // no API endpoint in wiki // Low priority
+
     def report(self):
         pass

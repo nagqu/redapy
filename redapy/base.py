@@ -50,7 +50,7 @@ mappings_artist_importance: Dict[int, str] = {
 }
 
 
-@dataclass()
+@dataclass
 class Request():
     id: int
     title: str
@@ -68,7 +68,7 @@ class TorrentDownload():
     encoding: str
 
 
-@dataclass()
+@dataclass
 class TorrentUpload():
     category: int
     artists: List[str]
@@ -97,7 +97,7 @@ class TorrentUpload():
     scene: Optional[bool] = None
 
 
-@dataclass()
+@dataclass
 class BookmarkedTorrent():
     group_id: int
 
@@ -129,3 +129,6 @@ urls: Dict[str, str] = {
     "torrent_details": "ajax.php?action=torrent&",
     "torrent_up": "ajax.php?action=upload"
 }
+
+class Failure(Exception):
+    pass

@@ -1,5 +1,5 @@
 from redapy.base import BaseAuth, TorrentDownload, urls
-from typing import Optional
+from typing import Optional, Union
 
 
 class Download():
@@ -8,6 +8,7 @@ class Download():
 
     def get_torrent_data(self, id: int) -> TorrentDownload:
         self.url_details: str = urls["base_url"] + urls["torrent_details"]
+
         r = self.sess.session.get(self.url_details + f'id={id}')
         resp_json = r.json()
 
@@ -22,8 +23,12 @@ class Download():
         return torrent
 
 # TODO finish try/except
-    def download_torrent(self, id: int, token: Optional[int] = 0):
+    def download_torrent(self, id: int, token: Optional[Union[int, bool]] = 0):
         self.url_dl: str = urls["base_url"] + urls["torrent_dl"]
+
+        if type(token) == bool:
+            token = int(token)
+
         r = self.sess.session.get(
             self.url_dl + f'id={id}&usetoken={token}', stream=True)
         r_cont_b = bytes(r.content)
