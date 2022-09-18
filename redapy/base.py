@@ -59,6 +59,55 @@ class Request():
 
 
 @dataclass
+class Artist():
+    id: int
+    name: str
+    aliasid: int
+
+
+@dataclass
+class Torrent():
+    id: int
+    artists: List[Artist]
+    remastered: bool
+    remaster_year: int
+    remaster_cat_no: str
+    remaster_title: str
+    media: str
+    encoding: str
+    format: str
+    has_log: bool
+    log_score: int
+    has_cue: bool
+    scene: bool
+    vanity_house: bool
+    file_count: int
+    time_uploaded: str
+    size: int  # in bytes
+    snatches: int
+    seeders: int
+    leechers: int
+    is_freeleech: bool
+    is_freeload: bool
+    is_personal_freeleech: bool
+    can_use_token: bool
+    has_snatched: bool
+
+
+@dataclass
+class TorrentGroup():
+    group_id: int
+    group_name: str
+    artist: str
+    tags: List[str]
+    bookmarked: bool
+    vanity_house: bool
+    group_year: int
+    release_type: str
+    torrents: List[Torrent]
+
+
+@dataclass
 class TorrentDownload():
     artists: List[str]
     name: str
@@ -129,6 +178,7 @@ urls: Dict[str, str] = {
     "torrent_details": "ajax.php?action=torrent&",
     "torrent_up": "ajax.php?action=upload"
 }
+
 
 class Failure(Exception):
     pass
