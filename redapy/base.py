@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import requests
 from dotenv import load_dotenv
 import os
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Union
 
 mappings_release: Dict[int, str] = {
     1: "Album",
@@ -103,7 +103,7 @@ class TorrentGroup():
     bookmarked: bool
     vanity_house: bool
     group_year: int
-    release_type: str
+    release_type: Union[str, int]
     torrents: List[Torrent]
 
 
